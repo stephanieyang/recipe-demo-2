@@ -1,0 +1,110 @@
+{
+  "recipeData" : {
+    "category" : {
+      "Dessert" : {
+        "-Ke3hEthffGEaTXWHdzm" : {
+          "category" : "Dessert",
+          "directions" : "Mix and bake.",
+          "imageLink" : "http://placehold.it/250x250",
+          "ingredients" : {
+            "-Ke3hEuqgWHKVRyRRyoU" : "butter",
+            "-Ke3hEutHVSdP14BFW7N" : "sugar",
+            "-Ke3hEuvA2wuD_M8vfr5" : "eggs",
+            "-Ke3hEuwAu9iVo4uQSkx" : "vanilla"
+          },
+          "name" : "Cake",
+          "user" : "tomoetachibana"
+        }
+      },
+      "Drink" : {
+        "-Ke3hSEHQcXI7V40njWW" : {
+          "category" : "Drink",
+          "directions" : "Heat and stir.",
+          "imageLink" : "http://placehold.it/200x200",
+          "ingredients" : {
+            "-Ke3hSFBV2fwQjQF-M8D" : "milk",
+            "-Ke3hSFDAK6aBEPPFa0H" : "chocolate"
+          },
+          "name" : "Hot chocolate",
+          "user" : "mariatorres"
+        }
+      },
+      "Meal" : {
+        "-Ke3gpDUxFM20LVFTKUu" : {
+          "category" : "Meal",
+          "directions" : "Put cheese between bread",
+          "imageLink" : "http://placehold.it/200x200",
+          "ingredients" : {
+            "-Ke3gpEbX55Szm5yr7fE" : "cheese",
+            "-Ke3gpEgLJm5TmxiaFqE" : "bread"
+          },
+          "name" : "Cheese sandwich",
+          "user" : "hankfreebird"
+        }
+      }
+    },
+    "user" : {
+      "hankfreebird" : {
+        "-Ke3gpDLZ4Eyg7SKOP_p" : {
+          "category" : "Meal",
+          "directions" : "Put cheese between bread",
+          "imageLink" : "http://placehold.it/200x200",
+          "ingredients" : {
+            "-Ke3gpEWWk3JZrA88KoI" : "cheese",
+            "-Ke3gpEY713lr4xXIjxn" : "bread"
+          },
+          "name" : "Cheese sandwich",
+          "user" : "hankfreebird"
+        }
+      },
+      "mariatorres" : {
+        "-Ke3hSEFJcEM5MfmZZtX" : {
+          "category" : "Drink",
+          "directions" : "Heat and stir.",
+          "imageLink" : "http://placehold.it/200x200",
+          "ingredients" : {
+            "-Ke3hSF2z_SUiP7BUsSI" : "milk",
+            "-Ke3hSF4EdwQbckC0uYz" : "chocolate"
+          },
+          "name" : "Hot chocolate",
+          "user" : "mariatorres"
+        }
+      },
+      "tomoetachibana" : {
+        "-Ke3hEtdHAybqwhPh2OQ" : {
+          "category" : "Dessert",
+          "directions" : "Mix and bake.",
+          "imageLink" : "http://placehold.it/250x250",
+          "ingredients" : {
+            "-Ke3hEuYFt1Dem2uV7HG" : "butter",
+            "-Ke3hEuaPZb2kWhD8qXr" : "sugar",
+            "-Ke3hEubXgXvth6nuQ2E" : "eggs",
+            "-Ke3hEudJsml51TsrZDR" : "vanilla"
+          },
+          "name" : "Cake",
+          "user" : "tomoetachibana"
+        }
+      }
+    }
+  },
+  "userData" : {
+    "-Ke3Meh7fOWKAihKPPeh" : {
+      "username" : "naomikimishima"
+    },
+    "-Ke3Ml1AB7DGtVjf6SPK" : {
+      "username" : "hankfreebird"
+    },
+    "-Ke3MmfHvTGVviGUBNdn" : {
+      "username" : "gabrielcunningham"
+    },
+    "-Ke3MoF1qRk_xijH7v0W" : {
+      "username" : "tomoetachibana"
+    },
+    "-Ke3Mps2miT5nGfFp-0H" : {
+      "username" : "mariatorres"
+    },
+    "-Ke3MrhAgQpkWBqcAtIP" : {
+      "username" : "erhardtmuller"
+    }
+  }
+}

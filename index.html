@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<meta charset="UTF-8">
+	<title>Document test</title>
+</head>
+<body>
+
+	<app></app>
+
+<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+<script type="riot/tag" src="./tags/app.tag"></script>
+<script type="riot/tag" src="./tags/gallery.tag"></script>
+<script type="riot/tag" src="./tags/recipe.tag"></script>
+<script type="riot/tag" src="./tags/recipe-full.tag"></script>
+<script type="riot/tag" src="./tags/pic.tag"></script>
+<script type="riot/tag" src="./tags/viewer.tag"></script>
+<script type="riot/tag" src="./tags/submit.tag"></script>
+<script type="riot/tag" src="./tags/users.tag"></script>
+<script type="riot/tag" src="./tags/upload-area.tag"></script>
+<!-- Include riot.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.3.15/riot+compiler.min.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBExGSfgkfeyetwPXyvIu-oaOCQZ_R2MII",
+    authDomain: "syy2114-demo3.firebaseapp.com",
+    databaseURL: "https://syy2114-demo3.firebaseio.com",
+    storageBucket: "syy2114-demo3.appspot.com",
+    messagingSenderId: "720758752290"
+  };
+  firebase.initializeApp(config);
+
+  var storage = firebase.storage();
+  var database = firebase.database();
+</script>
+
+
+<script src="js/main.js"></script>	
+</body>
+</html>
