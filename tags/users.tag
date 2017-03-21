@@ -3,7 +3,7 @@
 		<!-- <form action={ uploadFile } enctype="multipart/form-data">
 			<input type="text" name="filename"> -->>
 			<input type="text" name="usernameSubmit" id="usernameSubmit" placeholder="username"><br />
-			<button role="button" type="button" onclick={ submitInfo }>Submit</button><br />
+			<button role="button" type="button" onclick={ submitInfo }>Search user</button><br />
 			<!-- <button type="submit">Upload File</button>
 		</form> -->
 		<div class="row">
@@ -31,31 +31,36 @@
 
 
 		this.submitInfo = function(event) {
+			that.submittedRecipes = [];
+			that.triedRecipes = [];
 			var username = document.getElementById("usernameSubmit").value;
 			var userDataRecipesRef = dataRef.child("userData/" + username + "/recipes");
 			var userDataTriedRef = dataRef.child("userData/" + username + "/tried");
 			var recipePromise = userDataRecipesRef.once('value', function(recipesSnap) {
-				console.log(recipesSnap.val());
 				recipeData = recipesSnap.val();
 				for(recipeKey in recipeData) {
-					var recipeRef = userDataRecipesRef.child(recipeKey);
-					recipeRef.once('value', function(snap) {
-						var recipe = snap.val();
-						console.log(recipe);
-						that.submittedRecipes.push(recipe);
-					});
+					that.submittedRecipes.push(recipeData[recipeKey]);
+					// var recipeRef = userDataRecipesRef.child(recipeKey);
+					// recipeRef.once('value', function(snap) {
+					// 	console.log("recipe snap: ");
+					// 	console.log(snap);
+					// 	var recipe = snap.val();
+					// 	console.log(recipe);
+					// 	that.submittedRecipes.push(recipe);
+					// });
 				}
 			});
 			var triedPromise = userDataTriedRef.once('value', function(triedSnap) {
-				console.log(triedSnap.val());
 				triedData = triedSnap.val();
 				for(recipeKey in triedData) {
-					var recipeRef = userDataTriedRef.child(recipeKey);
-					recipeRef.once('value', function(snap) {
-						var recipe = snap.val();
-						console.log(recipe);
-						that.triedRecipes.push(recipe);
-					});
+					var recipe = triedData[recipeKey];
+					that.triedRecipes.push(triedData[recipeKey]);
+					// var recipeRef = userDataTriedRef.child(recipeKey);
+					// recipeRef.once('value', function(snap) {
+					// 	var recipe = snap.val();
+					// 	console.log(recipe);
+					// 	that.triedRecipes.push(recipe);
+					// });
 				}
 			});
 			var promises = [recipePromise, triedPromise];
@@ -63,10 +68,6 @@
 
 
 			Promise.all(promises).then(function(results) {
-				console.log("promises done, results =");
-				console.log(results);
-				console.log(that.submittedRecipes);
-				console.log(that.triedRecipes);
 				that.update();
 
 			});

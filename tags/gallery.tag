@@ -1,40 +1,45 @@
 <gallery>
 	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" id="gallery">
-	{fullRecipe}
 		<recipe-full recipe={fullRecipe}></recipe-full>
     	<recipe each={ recipe in recipeList }></recipe>
 	</div>
 <script>
+	
 	var that = this;
 	var dataRef = firebase.database().ref();
 	this.recipeList = [];
-	var recipeListRef = dataRef.child("recipeBasicData");
+	var recipeListRef = dataRef.child("recipeBasicData").orderByChild("name");
 	var promises = [];
-	this.fullRecipe = "sss";
+	this.fullRecipe = "";
+	var init = true;
+	// var categoryList = ["Snack","Drink","Meal","Dessert"];
+	// this.snackList = [];
+	// this.drinkList = [];
+	// this.mealList = [];
+	// this.dessertList = [];
 
-	function viewRecipe(event) {
-		console.log(event);
-		that.update();
-	}
+	// for(category in categoryList) {
+	// 	categoryRecipesRef = dataRef.child("category/" + category).limitToLast(3).orderByKey();
+	// 	categoryRecipesRef.once('value', function(snap) {
+
+	// 	var recipeList = snap.val();
+	// 	});
+	// }
+
+	// that.fullRecipe = null;
+	// that.update();
 
 	recipeListRef.once('value', function(snap) {
 		var newRecipe;
 
-		console.log(snap);
-		console.log(snap.val());
+		var recipeList = snap.val();
 
 		for(var recipeKey in snap.val()) {
-			var recipeRef = recipeListRef.child(recipeKey).orderByChild("name");
-			recipeRef.once('value', function(recipeSnap) {
-				var recipe = recipeSnap.val();
-				console.log(recipe);
-				that.recipeList.push(recipe);
-
-			}).then(function(result) {
-				console.log("result =");
-				console.log(result);
-			});
+			that.recipeList.push(recipeList[recipeKey]);
 		}
+
+		that.fullRecipe = null;
+		that.update();
 
 		// for(var catKey in catSnap.val()) {
 		// 	var recipeListRef = categoryRef.child(catKey);
@@ -71,6 +76,14 @@
 		// });
 	}, function(err) {
 		console.log(err);
+	});
+
+	recipeListRef.on('child_added', function(snap) {
+		if(init) return;
+		console.log(snap.val());
+		// does this work?
+		that.recipeList.push(snap.val());
+		that.update();
 	});
 
 </script>

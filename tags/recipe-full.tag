@@ -16,7 +16,7 @@
 		<div class="triedBy">
 			<h3>Tried By</h3>
 			<ul>
-				<li each={ username in recipe.triedByUsers }>{ username }</li>
+				<li each={ username in recipe.triedByList }>{ username }</li>
 			</ul>
 		</div>
 		<div>
@@ -30,26 +30,20 @@
 		var categoryDataRef = dataRef.child("categoryData");
 
 		this.on('update', function(event) {
-			console.log("recipe-full.tag: recipe =");
-			console.log(this.opts.recipe);
-			console.log(this.recipe);
 			if(this.opts && this.opts.recipe) {
 				this.recipe = this.opts.recipe;
-				this.recipe.ingredientList = this.recipe.ingredients;
+				this.recipe.ingredientList = this.recipe.ingredients.split(",");
+				this.recipe.triedByList = this.recipe.triedBy.split(",");
 			}
-			console.log(this.recipe);
-			console.log("done in full update");
 		});
+
 
 		this.submitInfo = function(event) {
 			var user = document.getElementById("triedUser").value;
-			console.log(user);
-			console.log(this.recipe.key);
 
 			//var userRef = dataRef.child("userData").orderByChild("name").equalTo(username);
 			// this only works so long as all recipes by an author have unique names; adding recipe IDs would make this more scalable
 			userTriedRef = dataRef.child("userData/" + user + "/tried");
-			console.log("key: " + this.recipe.key);
 			var recipeBasicData = {
 				"name":this.recipe.name,
 				"imageLink":this.recipe.imageLink,
@@ -60,6 +54,29 @@
 				console.log("Error: " + err);
 			}).then(function(result) {
 				console.log("successfully pushed recipe basic data to user tried");
+			});
+
+			recipeUsersTriedRef = dataRef.child("recipeDetailData/" + this.recipe.key + "/triedBy");
+			recipeUsersTriedRef.once('value', function(snap) {
+				console.log(snap.val());
+				var usersList = snap.val() ? snap.val().split(",") : [];
+				console.log(usersList);
+				// if 
+				var userAlreadyInList = !!(_.find(usersList, function(name){ return name == user; })); // boolean witchery
+				if(!userAlreadyInList) { // don't add if user is redundant
+					if(usersList.length > 0) {
+						var newVal = snap.val() + "," + user;
+						console.log(newVal);
+						recipeUsersTriedRef.set(newVal, function(err) {
+							console.log("Error: " + err);
+						});
+					} else {
+						recipeUsersTriedRef.set(user, function(err) {
+							console.log("Error: " + err);
+						});
+					}
+
+				}
 			});
 
 			// userTriedListRef.push(this.recipe.name, function(err) {
@@ -76,11 +93,6 @@
 
 
 		};
-
-		this.on('update', function(event) {
-			console.log("recipe update");
-			console.log(event);
-		});
 
 	</script>
 </recipe-full>
